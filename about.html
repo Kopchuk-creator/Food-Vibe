@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Про нас - Затишне Міське Кафе</title>
+  <meta name="description" content="Історія кафе Food&Vibe у Надвірній: свіжі локальні продукти, італійське борошно для піци та пасти, домашня атмосфера.">
+  <meta property="og:title" content="Про нас - Food&Vibe Cafe">
+  <meta property="og:description" content="Історія кафе Food&Vibe: свіжі локальні продукти та домашня атмосфера.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="menu-data.js" defer></script>
+  <script src="cart.js" defer></script>
+  <script src="main.js" defer></script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX');
+    fbq('track', 'PageView');
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Food&Vibe</a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Головна</a></li>
+          <li><a href="menu.html" class="nav-link">Меню</a></li>
+          <li><a href="delivery.html" class="nav-link">Доставка</a></li>
+          <li><a href="about.html" class="nav-link active">Про нас</a></li>
+          <li><a href="contacts.html" class="nav-link">Контакти</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-toggle" onclick="openCart()">
+          🛒<span class="cart-count" style="display: none;">0</span>
+        </button>
+        <button class="burger-menu" id="burger-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="nav-link">Головна</a></li>
+      <li><a href="menu.html" class="nav-link">Меню</a></li>
+      <li><a href="delivery.html" class="nav-link">Доставка</a></li>
+      <li><a href="about.html" class="nav-link">Про нас</a></li>
+      <li><a href="contacts.html" class="nav-link">Контакти</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">Наша Історія</h1>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+          <p style="margin-bottom: 1.5rem;">Food&Vibe народилося з простої ідеї: створити місце, де кожен гість почуватиметься як вдома, а їжа приноситиме щиру радість. Ми розпочали свій шлях як невелика сімейна пекарня, але завдяки вашій любові виросли у повноцінне міське кафе.</p>
+          <p>Наш секрет простий — ми використовуємо лише свіжі локальні продукти, італійське борошно для піци та пасти, і вкладаємо душу в кожне замовлення. Незалежно від того, чи забігли ви на ранкову каву, чи замовили великий сет для вечірки — ми гарантуємо незмінно високу якість.</p>
+        </div>
+        
+        <div class="about-gallery">
+          <img src="https://images.unsplash.com/photo-1743091584076-ea57d7aa161f?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 1" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1757010055832-de355d2f8f06?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 2" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1749922217403-412f69429dc5?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 3" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Food&Vibe</h4>
+          <p>Твоє улюблене місце для смачного відпочинку та зустрічей з друзями.</p>
+          <div class="social-links">
+            <a href="https://instagram.com/foodvibe_ua" target="_blank">Instagram</a>
+            <a href="https://t.me/foodvibe_ua" target="_blank">Telegram</a>
+            <a href="https://wa.me/380501234567" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Контакти</h4>
+          <ul>
+            <li>Телефон: <a href="tel:+380501234567">+38 (050) 123-45-67</a></li>
+            <li>Email: <a href="mailto:hello@foodvibe.ua">hello@foodvibe.ua</a></li>
+            <li>Адреса: вул. Соборна, 15, Надвірна</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Графік роботи</h4>
+          <ul>
+            <li>Пн - Пт: 10:00 - 22:00</li>
+            <li>Сб - Нд: 11:00 - 23:00</li>
+            <li>Доставка працює до 22:30</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Food&Vibe Cafe. Всі права захищені.
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h2>Ваш кошик</h2>
+        <button class="close-cart" id="close-cart-btn">&times;</button>
+      </div>
+      <div class="delivery-progress-container" id="delivery-progress-container">
+        <p id="delivery-progress-text">Додайте товарів ще на 400 грн для безкоштовної доставки!</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="delivery-progress-fill"></div>
+        </div>
+      </div>
+      <div class="cart-items" id="cart-items-list"></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Разом:</span>
+          <span id="cart-total-price">0 грн</span>
+        </div>
+        <button class="btn btn-primary checkout-btn" id="cart-checkout-btn" disabled>Оформити замовлення</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Оформлення замовлення</h2>
+        <button class="close-modal" id="close-modal-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="checkout-form">
+          <div class="toggle-group">
+            <button type="button" class="toggle-btn active" data-type="delivery">Доставка</button>
+            <button type="button" class="toggle-btn" data-type="pickup">Самовивіз</button>
+          </div>
+          <div class="form-group"><label for="name">Ім'я</label><input type="text" id="name" class="form-control" required placeholder="Ваше ім'я"></div>
+          <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" class="form-control" required placeholder="+38 (0XX) XXX-XX-XX"></div>
+          <div class="form-group" id="address-group"><label for="address">Адреса доставки</label><input type="text" id="address" class="form-control" required placeholder="Вулиця, будинок, квартира"></div>
+          <div class="form-group">
+            <label for="time">Час отримання замовлення</label>
+            <select id="time" class="form-control" required>
+              <option value="asap" selected>Якнайшвидше (~45 хв)</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Спосіб оплати</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="payment" value="cash" checked> Готівкою при отриманні</label>
+              <label class="radio-label"><input type="radio" name="payment" value="card"> Карткою онлайн</label>
+            </div>
+          </div>
+          <div id="payment-widget"></div>
+          <div class="order-summary" id="order-summary"></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+            <span style="font-size: 1.25rem; font-weight: bold;" id="checkout-final-total">0 грн</span>
+            <button type="submit" class="btn btn-primary" id="submit-order-btn">Підтвердити</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-content success-content">
+      <div class="success-icon">✓</div>
+      <h2>Дякуємо за замовлення!</h2>
+      <p>Ваше замовлення <strong id="success-order-number"></strong> успішно оформлено.</p>
+      <p style="color: var(--text-light); margin-top: 0.5rem; font-size: 0.9rem;">
+        Наш менеджер зв'яжеться з вами найближчим часом для підтвердження деталей.
+      </p>
+      <button class="btn btn-primary" onclick="closeSuccessModal()" style="margin-top: 1.5rem; width: 100%;">На головну</button>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+</body>
+</html>

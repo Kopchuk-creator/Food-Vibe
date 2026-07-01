@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Про нас - Затишне Міське Кафе</title>
-  <meta name="description" content="Історія кафе Food&Vibe у Надвірній: свіжі локальні продукти, італійське борошно для піци та пасти, домашня атмосфера.">
+  <meta name="description"
+    content="Історія кафе Food&Vibe у Надвірній: свіжі локальні продукти, італійське борошно для піци та пасти, домашня атмосфера.">
   <meta property="og:title" content="Про нас - Food&Vibe Cafe">
   <meta property="og:description" content="Історія кафе Food&Vibe: свіжі локальні продукти та домашня атмосфера.">
   <meta property="og:type" content="website">
@@ -17,27 +19,34 @@
   <script src="cart.js" defer></script>
   <script src="main.js" defer></script>
 
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  <!-- Скрипт уникнення FOUC (блимання білим екраном) -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXX');
-    fbq('track', 'PageView');
+    (function () {
+      try {
+        var localTheme = localStorage.getItem('cafe_theme');
+        var theme = localTheme ? JSON.parse(localTheme) : null;
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark-theme');
+        }
+      } catch (e) { }
+    })();
   </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');</script>
+  <!-- End Google Tag Manager -->
 </head>
+
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="header">
     <div class="container">
@@ -52,6 +61,8 @@
         </ul>
       </nav>
       <div class="header-actions">
+        <!-- ДОДАНО: Кнопка перемикання теми -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Змінити тему">🌙</button>
         <button class="cart-toggle" onclick="openCart()">
           🛒<span class="cart-count" style="display: none;">0</span>
         </button>
@@ -76,15 +87,23 @@
     <section class="section">
       <div class="container">
         <h1 class="section-title">Наша Історія</h1>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
-          <p style="margin-bottom: 1.5rem;">Food&Vibe народилося з простої ідеї: створити місце, де кожен гість почуватиметься як вдома, а їжа приноситиме щиру радість. Ми розпочали свій шлях як невелика сімейна пекарня, але завдяки вашій любові виросли у повноцінне міське кафе.</p>
-          <p>Наш секрет простий — ми використовуємо лише свіжі локальні продукти, італійське борошно для піци та пасти, і вкладаємо душу в кожне замовлення. Незалежно від того, чи забігли ви на ранкову каву, чи замовили великий сет для вечірки — ми гарантуємо незмінно високу якість.</p>
+        <div
+          style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+          <p style="margin-bottom: 1.5rem;">Food&Vibe народилося з простої ідеї: створити місце, де кожен гість
+            почуватиметься як вдома, а їжа приноситиме щиру радість. Ми розпочали свій шлях як невелика сімейна пекарня,
+            але завдяки вашій любові виросли у повноцінне міське кафе.</p>
+          <p>Наш секрет простий — ми використовуємо лише свіжі локальні продукти, італійське борошно для піци та пасти,
+            і вкладаємо душу в кожне замовлення. Незалежно від того, чи забігли ви на ранкову каву, чи замовили великий
+            сет для вечірки — ми гарантуємо незмінно високу якість.</p>
         </div>
-        
+
         <div class="about-gallery">
-          <img src="https://images.unsplash.com/photo-1743091584076-ea57d7aa161f?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 1" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1757010055832-de355d2f8f06?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 2" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1749922217403-412f69429dc5?auto=format&fit=crop&w=600&h=400&q=80" alt="Інтер'єр кафе 3" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1743091584076-ea57d7aa161f?auto=format&fit=crop&w=600&h=400&q=80"
+            alt="Інтер'єр кафе 1" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1757010055832-de355d2f8f06?auto=format&fit=crop&w=600&h=400&q=80"
+            alt="Інтер'єр кафе 2" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1749922217403-412f69429dc5?auto=format&fit=crop&w=600&h=400&q=80"
+            alt="Інтер'єр кафе 3" loading="lazy">
         </div>
       </div>
     </section>
@@ -160,9 +179,12 @@
             <button type="button" class="toggle-btn active" data-type="delivery">Доставка</button>
             <button type="button" class="toggle-btn" data-type="pickup">Самовивіз</button>
           </div>
-          <div class="form-group"><label for="name">Ім'я</label><input type="text" id="name" class="form-control" required placeholder="Ваше ім'я"></div>
-          <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" class="form-control" required placeholder="+38 (0XX) XXX-XX-XX"></div>
-          <div class="form-group" id="address-group"><label for="address">Адреса доставки</label><input type="text" id="address" class="form-control" required placeholder="Вулиця, будинок, квартира"></div>
+          <div class="form-group"><label for="name">Ім'я</label><input type="text" id="name" class="form-control"
+              required placeholder="Ваше ім'я"></div>
+          <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" class="form-control"
+              required placeholder="+38 (0XX) XXX-XX-XX"></div>
+          <div class="form-group" id="address-group"><label for="address">Адреса доставки</label><input type="text"
+              id="address" class="form-control" required placeholder="Вулиця, будинок, квартира"></div>
           <div class="form-group">
             <label for="time">Час отримання замовлення</label>
             <select id="time" class="form-control" required>
@@ -177,7 +199,8 @@
           <div class="form-group">
             <label>Спосіб оплати</label>
             <div class="radio-group">
-              <label class="radio-label"><input type="radio" name="payment" value="cash" checked> Готівкою при отриманні</label>
+              <label class="radio-label"><input type="radio" name="payment" value="cash" checked> Готівкою при
+                отриманні</label>
               <label class="radio-label"><input type="radio" name="payment" value="card"> Карткою онлайн</label>
             </div>
           </div>
@@ -200,10 +223,12 @@
       <p style="color: var(--text-light); margin-top: 0.5rem; font-size: 0.9rem;">
         Наш менеджер зв'яжеться з вами найближчим часом для підтвердження деталей.
       </p>
-      <button class="btn btn-primary" onclick="closeSuccessModal()" style="margin-top: 1.5rem; width: 100%;">На головну</button>
+      <button class="btn btn-primary" onclick="closeSuccessModal()" style="margin-top: 1.5rem; width: 100%;">На
+        головну</button>
     </div>
   </div>
 
   <div id="toast-container" class="toast-container"></div>
 </body>
+
 </html>

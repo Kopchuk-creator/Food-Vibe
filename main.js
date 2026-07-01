@@ -1,4 +1,3 @@
-// --- Утиліта для санітизації даних (захист від XSS) ---
 function sanitizeInput(str) {
   if (typeof str !== 'string') return str;
   const map = {
@@ -14,6 +13,40 @@ function sanitizeInput(str) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Ініціалізація Темної Теми ---
+  function initTheme() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    
+    // Перевіряємо збережену тему, якщо немає — перевіряємо системні налаштування
+    const currentTheme = window.storage ? window.storage.get('cafe_theme') : null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+      if(themeToggleBtn) themeToggleBtn.innerHTML = '☀️';
+    } else {
+      if(themeToggleBtn) themeToggleBtn.innerHTML = '🌙';
+    }
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-theme');
+        let theme = 'light';
+        
+        if (document.documentElement.classList.contains('dark-theme')) {
+          theme = 'dark';
+          themeToggleBtn.innerHTML = '☀️';
+        } else {
+          themeToggleBtn.innerHTML = '🌙';
+        }
+        
+        if (window.storage) window.storage.set('cafe_theme', theme);
+      });
+    }
+  }
+
+  initTheme();
+
   // --- Мобільне меню ---
   const burgerBtn = document.getElementById('burger-menu');
   const mobileNav = document.getElementById('mobile-nav');
@@ -74,8 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         filtered = window.menuData.filter(i => i.category === category);
       }
       menuGrid.innerHTML = filtered.map(createCardHTML).join('');
-      
-      // Заново підключаємо анімацію появи для нових карток
       if (window.initScrollReveal) window.initScrollReveal();
     };
 
@@ -296,11 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // ==========================================================================
-  // Premium Motion Design: Scroll Reveal & Parallax
-  // ==========================================================================
-
-  // 1. Scroll Reveal з ефектом Stagger
+  // --- Premium Motion Design: Scroll Reveal & Parallax ---
   const revealOptions = {
     root: null,
     rootMargin: '0px 0px -50px 0px', 
@@ -329,11 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.initScrollReveal();
 
-  // 2. Parallax ефект для Hero секції
   const heroSection = document.querySelector('.hero');
   if (heroSection) {
     let ticking = false;
-
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {

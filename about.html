@@ -12,25 +12,12 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script src="menu-data.js" defer></script>
   <script src="cart.js" defer></script>
   <script src="main.js" defer></script>
-
-  <!-- Скрипт уникнення FOUC (блимання білим екраном) -->
-  <script>
-    (function () {
-      try {
-        var localTheme = localStorage.getItem('cafe_theme');
-        var theme = localTheme ? JSON.parse(localTheme) : null;
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark-theme');
-        }
-      } catch (e) { }
-    })();
-  </script>
 
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -61,8 +48,6 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <!-- ДОДАНО: Кнопка перемикання теми -->
-        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Змінити тему">🌙</button>
         <button class="cart-toggle" onclick="openCart()">
           🛒<span class="cart-count" style="display: none;">0</span>
         </button>
@@ -84,11 +69,16 @@
   </div>
 
   <main>
-    <section class="section">
+    <section class="page-hero on-dark">
       <div class="container">
-        <h1 class="section-title">Наша Історія</h1>
-        <div
-          style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+        <span class="section-eyebrow">Про нас</span>
+        <h1 class="section-title centered">Наша <em>Історія</em></h1>
+      </div>
+    </section>
+
+    <section class="section on-light">
+      <div class="container">
+        <div style="max-width: 720px; margin: 0 auto; text-align: center; font-size: 1.05rem; line-height: 1.9; color: var(--ink-muted);">
           <p style="margin-bottom: 1.5rem;">Food&Vibe народилося з простої ідеї: створити місце, де кожен гість
             почуватиметься як вдома, а їжа приноситиме щиру радість. Ми розпочали свій шлях як невелика сімейна пекарня,
             але завдяки вашій любові виросли у повноцінне міське кафе.</p>
@@ -207,7 +197,7 @@
           <div id="payment-widget"></div>
           <div class="order-summary" id="order-summary"></div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-            <span style="font-size: 1.25rem; font-weight: bold;" id="checkout-final-total">0 грн</span>
+            <span style="font-size: 1.25rem; font-weight: bold; color: var(--gold);" id="checkout-final-total">0 грн</span>
             <button type="submit" class="btn btn-primary" id="submit-order-btn">Підтвердити</button>
           </div>
         </form>
@@ -220,7 +210,7 @@
       <div class="success-icon">✓</div>
       <h2>Дякуємо за замовлення!</h2>
       <p>Ваше замовлення <strong id="success-order-number"></strong> успішно оформлено.</p>
-      <p style="color: var(--text-light); margin-top: 0.5rem; font-size: 0.9rem;">
+      <p style="margin-top: 0.5rem; font-size: 0.9rem;">
         Наш менеджер зв'яжеться з вами найближчим часом для підтвердження деталей.
       </p>
       <button class="btn btn-primary" onclick="closeSuccessModal()" style="margin-top: 1.5rem; width: 100%;">На

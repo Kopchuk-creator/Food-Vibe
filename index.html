@@ -8,29 +8,16 @@
   <meta property="og:title" content="Головна - Затишне Міське Кафе">
   <meta property="og:description" content="Смачна піца, паста та десерти зі швидкою доставкою додому.">
   <meta property="og:type" content="website">
-  
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1749871615234-98bff62995ba?auto=format&fit=crop&w=1920&h=1080&q=80">
+
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&h=1100&q=80">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script src="menu-data.js" defer></script>
   <script src="cart.js" defer></script>
   <script src="main.js" defer></script>
-
-  <!-- Скрипт уникнення FOUC (блимання білим екраном) -->
-  <script>
-    (function() {
-      try {
-        var localTheme = localStorage.getItem('cafe_theme');
-        var theme = localTheme ? JSON.parse(localTheme) : null;
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark-theme');
-        }
-      } catch (e) {}
-    })();
-  </script>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -41,7 +28,6 @@
   <!-- End Google Tag Manager -->
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -58,16 +44,11 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <!-- ДОДАНО: Кнопка перемикання теми -->
-        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Змінити тему">🌙</button>
         <button class="cart-toggle" onclick="openCart()">
-          🛒
-          <span class="cart-count" style="display: none;">0</span>
+          🛒<span class="cart-count" style="display: none;">0</span>
         </button>
         <button class="burger-menu" id="burger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
@@ -84,33 +65,55 @@
   </div>
 
   <main>
+    <!-- HERO: split — text left, photo right -->
     <section class="hero">
       <div class="container">
-        <h1>Справжній смак у кожному шматочку</h1>
-        <p>Затишна атмосфера та улюблені страви: від гарячої піци до найніжніших десертів. Замовляй з доставкою або завітай до нас!</p>
-        <a href="menu.html" class="btn btn-primary">Перейти до меню</a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Спеціальні пропозиції</h2>
-        <div class="promos-grid">
-          <div class="info-box" style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
-            <h3>🍕 Щасливі години!</h3>
-            <p>Замовляй будь-які дві піци з 12:00 до 15:00 та отримуй знижку 20% на все замовлення. Ідеально для обіду в офісі чи з друзями.</p>
-          </div>
-          <div class="info-box" style="background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);">
-            <h3>☕ Кава + Десерт = Любов</h3>
-            <p>При покупці будь-якого десерту — класичний капучино або еспресо у подарунок. Акція діє при самовивозі.</p>
-          </div>
+        <div class="hero-text">
+          <span class="section-eyebrow">Затишне міське кафе</span>
+          <h1 class="section-title">Справжній смак<br><em>у кожному шматочку</em></h1>
+          <p>Затишна атмосфера та улюблені страви: від гарячої піци до найніжніших десертів. Замовляй з доставкою або завітай до нас.</p>
+          <a href="menu.html" class="btn btn-primary">Перейти до меню</a>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&h=1100&q=80" alt="Кава Food&Vibe" loading="eager">
         </div>
       </div>
     </section>
 
-    <section class="section" style="background-color: transparent;">
+    <!-- STORY: light, circular photo + leaves -->
+    <section class="section on-light story-section">
+      <div class="container story-layout">
+        <div class="story-content">
+          <span class="section-eyebrow">Наша історія</span>
+          <h2 class="section-title">Зроблено з душею,<br><em>подано з любов'ю</em></h2>
+          <p>Food&Vibe народилося з простої ідеї: створити місце, де кожен гість почуватиметься як вдома. Ми використовуємо лише свіжі локальні продукти та італійське борошно для піци і пасти — і вкладаємо душу в кожне замовлення.</p>
+          <a href="about.html" class="btn btn-outline on-light" style="margin-top: 1.75rem;">Дізнатися більше</a>
+          <div class="story-stats">
+            <div class="stat-item">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Років досвіду</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">40+</span>
+              <span class="stat-label">Страв у меню</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">1000+</span>
+              <span class="stat-label">Задоволених гостей</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-media">
+          <img src="https://images.unsplash.com/photo-1743091584076-ea57d7aa161f?auto=format&fit=crop&w=800&h=800&q=80" alt="Атмосфера кафе Food&Vibe" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALS: dark cards -->
+    <section class="section on-dark">
       <div class="container">
-        <h2 class="section-title">Хіти продажів</h2>
+        <span class="section-eyebrow">Наші фаворити</span>
+        <h2 class="section-title">Хіти <em>продажів</em></h2>
         <div id="popular-grid" class="grid"></div>
         <div style="text-align: center; margin-top: 3rem;">
           <a href="menu.html" class="btn btn-outline">Показати все меню</a>
@@ -118,16 +121,47 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container" style="text-align: center; max-width: 800px;">
-        <h2 class="section-title">Швидка доставка по місту</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 2rem;">Доставляємо гарячу їжу прямо до ваших дверей. Середній час очікування — 45 хвилин. Мінімальна сума замовлення для безкоштовної доставки — 400 грн.</p>
-        <a href="delivery.html" class="btn btn-outline">Детальніше про доставку</a>
+    <!-- PROMO: gradient + beans photo -->
+    <section class="section on-dark" style="padding-top: 0;">
+      <div class="container">
+        <div class="promo-banner">
+          <span class="section-eyebrow">Спеціальна пропозиція</span>
+          <h2>Знижка <em>20%</em> у щасливі години</h2>
+          <p>Замовляй будь-які дві піци з 12:00 до 15:00 та отримуй знижку 20% на все замовлення. Ідеально для обіду в офісі чи з друзями.</p>
+          <a href="menu.html" class="btn btn-primary">Замовити зараз</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES: light, 4 columns -->
+    <section class="section on-light">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">☘</div>
+            <h4>Свіжі продукти</h4>
+            <p>Лише локальні постачальники та італійське борошно для піци і пасти.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🔥</div>
+            <h4>Готуємо з душею</h4>
+            <p>Кожна страва готується на замовлення — без заготовок наперед.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🚴</div>
+            <h4>Швидка доставка</h4>
+            <p>Гаряча їжа за 45 хвилин. Безкоштовно від 400 грн замовлення.</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">♡</div>
+            <h4>З любов'ю до гостей</h4>
+            <p>Затишна атмосфера, де кожен відчуває себе як вдома.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Уніфікований Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -169,7 +203,7 @@
         <h2>Ваш кошик</h2>
         <button class="close-cart" id="close-cart-btn">&times;</button>
       </div>
-      
+
       <div class="delivery-progress-container" id="delivery-progress-container">
         <p id="delivery-progress-text">Додайте товарів ще на 400 грн для безкоштовної доставки!</p>
         <div class="progress-bar">
@@ -177,8 +211,7 @@
         </div>
       </div>
 
-      <div class="cart-items" id="cart-items-list">
-        </div>
+      <div class="cart-items" id="cart-items-list"></div>
       <div class="cart-footer">
         <div class="cart-total">
           <span>Разом:</span>
@@ -201,22 +234,22 @@
             <button type="button" class="toggle-btn active" data-type="delivery">Доставка</button>
             <button type="button" class="toggle-btn" data-type="pickup">Самовивіз</button>
           </div>
-          
+
           <div class="form-group">
             <label for="name">Ім'я</label>
             <input type="text" id="name" class="form-control" required placeholder="Ваше ім'я">
           </div>
-          
+
           <div class="form-group">
             <label for="phone">Телефон</label>
             <input type="tel" id="phone" class="form-control" required placeholder="+38 (0XX) XXX-XX-XX">
           </div>
-          
+
           <div class="form-group" id="address-group">
             <label for="address">Адреса доставки</label>
             <input type="text" id="address" class="form-control" required placeholder="Вулиця, будинок, квартира">
           </div>
-          
+
           <div class="form-group">
             <label for="time">Час отримання замовлення</label>
             <select id="time" class="form-control" required>
@@ -228,7 +261,7 @@
               <option value="19:00">19:00</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label>Спосіб оплати</label>
             <div class="radio-group">
@@ -240,12 +273,12 @@
               </label>
             </div>
           </div>
-          
+
           <div id="payment-widget"></div>
           <div class="order-summary" id="order-summary"></div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
-            <span style="font-size: 1.25rem; font-weight: bold;" id="checkout-final-total">0 грн</span>
+            <span style="font-size: 1.25rem; font-weight: bold; color: var(--gold);" id="checkout-final-total">0 грн</span>
             <button type="submit" class="btn btn-primary" id="submit-order-btn">Підтвердити</button>
           </div>
         </form>
@@ -258,7 +291,7 @@
       <div class="success-icon">✓</div>
       <h2>Дякуємо за замовлення!</h2>
       <p>Ваше замовлення <strong id="success-order-number"></strong> успішно оформлено.</p>
-      <p style="color: var(--text-light); margin-top: 0.5rem; font-size: 0.9rem;">
+      <p style="margin-top: 0.5rem; font-size: 0.9rem;">
         Наш менеджер зв'яжеться з вами найближчим часом для підтвердження деталей.
       </p>
       <button class="btn btn-primary" onclick="closeSuccessModal()" style="margin-top: 1.5rem; width: 100%;">На головну</button>

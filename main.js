@@ -14,47 +14,34 @@ function sanitizeInput(str) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Ініціалізація Темної Теми ---
-  function initTheme() {
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    
-    // Перевіряємо збережену тему, якщо немає — перевіряємо системні налаштування
-    const currentTheme = window.storage ? window.storage.get('cafe_theme') : null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-      if(themeToggleBtn) themeToggleBtn.innerHTML = '☀️';
-    } else {
-      if(themeToggleBtn) themeToggleBtn.innerHTML = '🌙';
-    }
-
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark-theme');
-        let theme = 'light';
-        
-        if (document.documentElement.classList.contains('dark-theme')) {
-          theme = 'dark';
-          themeToggleBtn.innerHTML = '☀️';
-        } else {
-          themeToggleBtn.innerHTML = '🌙';
-        }
-        
-        if (window.storage) window.storage.set('cafe_theme', theme);
-      });
-    }
-  }
-
-  initTheme();
-
-  // --- Мобільне меню ---
+  // --- Мобільне меню (компактний випадний список зліва зверху) ---
   const burgerBtn = document.getElementById('burger-menu');
   const mobileNav = document.getElementById('mobile-nav');
-  
+
+  function closeMobileNav() {
+    mobileNav.classList.remove('open');
+    burgerBtn.classList.remove('open');
+  }
+
   if (burgerBtn && mobileNav) {
-    burgerBtn.addEventListener('click', () => {
+    burgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+      burgerBtn.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && !burgerBtn.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileNav();
     });
   }
 
@@ -71,19 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return `
       <div class="card" data-category="${item.category}">
         <div class="card-img-wrap">
-          <img src="${item.image}" alt="${item.name}" width="600" height="400" loading="lazy" 
-               style="aspect-ratio: 3/2; object-fit: cover;" 
-               class="fade-img" 
+          <img src="${item.image}" alt="${item.name}" width="600" height="400" loading="lazy"
+               class="fade-img"
                onload="this.classList.add('loaded')">
           ${badgeHtml}
         </div>
         <div class="card-body">
           <h3 class="card-title">${item.name}</h3>
-          <p class="card-desc">${item.description}</p>
-          <div class="card-meta">
-            <span>Склад: ${item.composition}</span><br>
-            <span>Вага: ${item.weight}</span>
-          </div>
+          <p class="card-desc">${item.description} <span style="opacity:.7">— ${item.weight}</span></p>
           <div class="card-footer">
             <span class="card-price">${item.price} грн</span>
             ${btnHtml}

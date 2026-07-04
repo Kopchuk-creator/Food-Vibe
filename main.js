@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMobileNav() {
     mobileNav.classList.remove('open');
     burgerBtn.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
   }
 
   if (burgerBtn && mobileNav) {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       mobileNav.classList.toggle('open');
       burgerBtn.classList.toggle('open');
+      burgerBtn.setAttribute('aria-expanded', mobileNav.classList.contains('open') ? 'true' : 'false');
     });
 
     mobileNav.querySelectorAll('.nav-link').forEach(link => {
@@ -140,7 +142,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const addressGroup = document.getElementById('address-group');
   const finalTotal = document.getElementById('checkout-final-total');
   
-  let currentOrderType = 'delivery';
+  // Відновлюємо раніше обраний тип замовлення (доставка/самовивіз) з localStorage
+  let currentOrderType = (window.storage ? window.storage.get('cafe_order_type') : null) || 'delivery';
+
+  deliveryToggles.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.type === currentOrderType);
+  });
+  if (addressGroup) {
+    if (currentOrderType === 'pickup') {
+      addressGroup.style.display = 'none';
+      document.getElementById('address')?.removeAttribute('required');
+    } else {
+      addressGroup.style.display = 'block';
+      document.getElementById('address')?.setAttribute('required', 'required');
+    }
+  }
 
   function updateOrderSummary() {
     const subtotal = getTotal();
@@ -170,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       checkoutModal.classList.add('open');
       document.body.style.overflow = 'hidden';
       updateOrderSummary();
+      showPhoneError('');
 
       const savedUser = window.storage ? window.storage.get('cafe_user_info') : null;
       if (savedUser) {
@@ -196,17 +213,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   deliveryToggles.forEach(btn => {
     btn.addEventListener('click', (e) => {
+      e.preventDefault();
+
       deliveryToggles.forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       currentOrderType = e.target.dataset.type;
+      if (window.storage) window.storage.set('cafe_order_type', currentOrderType);
 
       const addressInput = document.getElementById('address');
       if (currentOrderType === 'pickup') {
         addressGroup.style.display = 'none';
         addressInput.removeAttribute('required');
+        addressInput.value = '';
       } else {
         addressGroup.style.display = 'block';
         addressInput.setAttribute('required', 'required');
+        if (!addressInput.value) {
+          const savedUser = window.storage ? window.storage.get('cafe_user_info') : null;
+          if (savedUser && savedUser.address) addressInput.value = savedUser.address;
+        }
       }
 
       updateOrderSummary();
@@ -227,17 +252,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  function validatePhone(phone) {
+    const digitsOnly = phone.replace(/\D/g, '');
+    return /^[0-9+\-()\s]+$/.test(phone) && digitsOnly.length >= 9 && digitsOnly.length <= 13;
+  }
+
+  function showPhoneError(message) {
+    const phoneInput = document.getElementById('phone');
+    const phoneGroup = phoneInput.closest('.form-group');
+    let phoneError = phoneGroup.querySelector('.form-error');
+    if (!phoneError) {
+      phoneError = document.createElement('span');
+      phoneError.className = 'form-error';
+      phoneGroup.appendChild(phoneError);
+    }
+    phoneError.textContent = message;
+    phoneInput.classList.toggle('input-invalid', !!message);
+  }
+
   if (checkoutForm) {
     checkoutForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const phone = document.getElementById('phone').value;
-      const phoneRegex = /^[0-9\+\-\(\)\s]{10,15}$/;
-      
-      if (!phoneRegex.test(phone)) {
-        alert('Будь ласка, введіть коректний номер телефону');
+
+      if (!validatePhone(phone)) {
+        showPhoneError('Невалідний формат. Приклад: +38 (050) 123-45-67 або 0501234567');
+        document.getElementById('phone').focus();
         return;
       }
+      showPhoneError('');
 
       const rawName = document.getElementById('name').value;
       const rawAddress = document.getElementById('address').value;

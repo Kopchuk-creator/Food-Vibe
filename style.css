@@ -461,11 +461,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .promos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
 .contact-layout { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
 
+@media (max-width: 767px) {
+  .contact-layout .info-box {
+    text-align: center;
+  }
+  .contact-layout .info-box .social-row {
+    justify-content: center;
+  }
+}
+
 @media (min-width: 600px) {
   .grid, .promos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 768px) {
-  .contact-layout { grid-template-columns: 1fr 2fr; }
+  .contact-layout { grid-template-columns: 1fr 2fr; align-items: center;}
 }
 @media (min-width: 992px) {
   .grid { grid-template-columns: repeat(3, 1fr); }
@@ -767,6 +776,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .form-control::placeholder { color: #6b6155; }
 .form-control:focus { outline: none; border-color: var(--gold); }
 .form-control option { background-color: var(--dark-bg-alt); }
+.form-control.input-invalid { border-color: #d9756a; }
+
+.form-error {
+  color: #d9756a;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  display: block;
+  min-height: 1.1em;
+}
 
 .toggle-group { display: flex; background-color: var(--dark-bg); border: 1px solid var(--gold-soft); border-radius: var(--radius); padding: 0.25rem; margin-bottom: 1.5rem; }
 .toggle-btn { flex: 1; padding: 0.75rem; text-align: center; border-radius: 2px; font-weight: 600; font-size: 0.8rem; color: var(--cream-muted); text-transform: uppercase; letter-spacing: 1px; }

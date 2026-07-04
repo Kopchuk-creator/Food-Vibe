@@ -25,11 +25,96 @@
   })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
   <!-- End Google Tag Manager -->
 
-  
+  <!-- Google Analytics 4 (замінити G-XXXXXXXXXX на реальний ID клієнта) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Meta Pixel (замінити XXXXXXXXXXXXXXX на реальний ID клієнта) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'XXXXXXXXXXXXXXX');
+    fbq('track', 'PageView');
+  </script>
+
+  <!-- Schema.org: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Food&Vibe",
+    "image": "https://images.unsplash.com/photo-1743091584076-ea57d7aa161f?auto=format&fit=crop&w=1200&h=630&q=80",
+    "description": "Затишне міське кафе з доставкою піци, пасти, салатів та десертів у Надвірній",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "вул. Соборна, 15",
+      "addressLocality": "Надвірна",
+      "postalCode": "78200",
+      "addressCountry": "UA"
+    },
+    "telephone": "+380501234567",
+    "url": "https://kopchuk-creator.github.io/Food-Vibe/",
+    "servesCuisine": ["Італійська", "Європейська"],
+    "priceRange": "₴₴",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "11:00",
+        "closes": "23:00"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: Service (доставка) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Доставка Food&Vibe",
+    "provider": {
+      "@type": "CafeOrCoffeeShop",
+      "name": "Food&Vibe Cafe",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "вул. Соборна, 15",
+        "addressLocality": "Надвірна",
+        "postalCode": "78200",
+        "addressCountry": "UA"
+      },
+      "telephone": "+380501234567"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Надвірна"
+    },
+    "priceRange": "₴₴"
+  }
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"></noscript>
 
   <header class="header">
     <div class="container">
@@ -44,11 +129,11 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <button class="cart-toggle" onclick="openCart()">
+        <button class="cart-toggle" onclick="openCart()" aria-label="Відкрити кошик">
           🛒
           <span class="cart-count" style="display: none;">0</span>
         </button>
-        <button class="burger-menu" id="burger-menu">
+        <button class="burger-menu" id="burger-menu" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobile-nav">
           <span></span>
           <span></span>
           <span></span>
@@ -139,7 +224,7 @@
     <div class="cart-drawer">
       <div class="cart-header">
         <h2>Ваш кошик</h2>
-        <button class="close-cart" id="close-cart-btn">&times;</button>
+        <button class="close-cart" id="close-cart-btn" aria-label="Закрити кошик">&times;</button>
       </div>
       <div class="delivery-progress-container" id="delivery-progress-container">
         <p id="delivery-progress-text">Додайте товарів ще на 400 грн для безкоштовної доставки!</p>
@@ -159,7 +244,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Оформлення замовлення</h2>
-        <button class="close-modal" id="close-modal-btn">&times;</button>
+        <button class="close-modal" id="close-modal-btn" aria-label="Закрити вікно оформлення">&times;</button>
       </div>
       <div class="modal-body">
         <form id="checkout-form">

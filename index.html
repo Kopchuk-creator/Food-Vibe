@@ -9,10 +9,9 @@
   <meta property="og:description" content="Смачна піца, паста та десерти зі швидкою доставкою додому.">
   <meta property="og:type" content="website">
 
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&h=1100&q=80">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=IBM+Plex+Mono:wght@400;600&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <script src="menu-data.js" defer></script>
@@ -126,17 +125,44 @@
   </div>
 
   <main>
-    <!-- HERO: split — text left, photo right -->
+    <!-- HERO: text left + "хіт дня" з кнопкою "У кошик" з першого екрану -->
     <section class="hero">
       <div class="container">
         <div class="hero-text">
-          <span class="section-eyebrow">Затишне міське кафе</span>
-          <h1 class="section-title">Справжній смак<br><em>у кожному шматочку</em></h1>
-          <p>Затишна атмосфера та улюблені страви: від гарячої піци до найніжніших десертів. Замовляй з доставкою або завітай до нас.</p>
-          <a href="menu.html" class="btn btn-primary">Перейти до меню</a>
+          <span class="section-eyebrow">Ласкаво просимо до</span>
+          <h1 class="section-title hero-title"><em>Food&Vibe</em><span class="hero-tagline">Затишне міське кафе</span></h1>
+          <p>Справжній смак у кожному шматочку: від гарячої піци до найніжніших десертів. Замовляй з доставкою або завітай до нас.</p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary">Обрати страву</a>
+            <a href="delivery.html" class="btn btn-outline">Доставка</a>
+          </div>
         </div>
         <div class="hero-media">
-          <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&h=1100&q=80" alt="Кава Food&Vibe" loading="eager">
+          <div id="hero-special" class="hero-special"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALS: три фірмові страви (повне меню — на вкладці "Меню") -->
+    <section class="section on-dark" id="menu">
+      <div class="container">
+        <span class="section-eyebrow centered">Смак найкращого</span>
+        <h2 class="section-title centered">Наші <em>фірмові страви</em></h2>
+        <div id="popular-grid" class="grid"></div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="menu.html" class="btn btn-outline">Показати все меню</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO: gradient + beans photo -->
+    <section class="section on-dark" style="padding-top: 0;">
+      <div class="container">
+        <div class="promo-banner">
+          <span class="section-eyebrow">Спеціальна пропозиція</span>
+          <h2>Знижка <em>20%</em> у щасливі години</h2>
+          <p>Замовляй будь-які дві піци з 12:00 до 15:00 та отримуй знижку 20% на все замовлення. Ідеально для обіду в офісі чи з друзями.</p>
+          <a href="#menu" class="btn btn-primary">Замовити зараз</a>
         </div>
       </div>
     </section>
@@ -170,26 +196,27 @@
       </div>
     </section>
 
-    <!-- SPECIALS: dark cards -->
+    <!-- REVIEWS: відгуки гостей -->
     <section class="section on-dark">
       <div class="container">
-        <span class="section-eyebrow">Наші фаворити</span>
-        <h2 class="section-title">Хіти <em>продажів</em></h2>
-        <div id="popular-grid" class="grid"></div>
-        <div style="text-align: center; margin-top: 3rem;">
-          <a href="menu.html" class="btn btn-outline">Показати все меню</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROMO: gradient + beans photo -->
-    <section class="section on-dark" style="padding-top: 0;">
-      <div class="container">
-        <div class="promo-banner">
-          <span class="section-eyebrow">Спеціальна пропозиція</span>
-          <h2>Знижка <em>20%</em> у щасливі години</h2>
-          <p>Замовляй будь-які дві піци з 12:00 до 15:00 та отримуй знижку 20% на все замовлення. Ідеально для обіду в офісі чи з друзями.</p>
-          <a href="menu.html" class="btn btn-primary">Замовити зараз</a>
+        <span class="section-eyebrow centered">Відгуки</span>
+        <h2 class="section-title centered">Що кажуть <em>наші гості</em></h2>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <span class="review-name">Олена К.</span>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Неймовірна піца та дуже привітний персонал! Атмосфера затишна, а десерти — просто мрія. Тепер це наше улюблене місце для сімейних вечерь.</p>
+          </div>
+          <div class="review-card">
+            <span class="review-name">Андрій М.</span>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Замовляли доставку на офіс — все приїхало гарячим і точно вчасно. Карбонара як в Італії. Однозначно рекомендую!</p>
+          </div>
+          <div class="review-card">
+            <span class="review-name">Марія С.</span>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Найкращий тирамісу в місті! Замовляю щотижня через сайт — зручний кошик і завжди приємний бонус за самовивіз.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -225,35 +252,29 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Food&Vibe</h4>
-          <p>Твоє улюблене місце для смачного відпочинку та зустрічей з друзями.</p>
-          <div class="social-links">
-            <a href="https://instagram.com/foodvibe_ua" target="_blank">Instagram</a>
-            <a href="https://t.me/foodvibe_ua" target="_blank">Telegram</a>
-            <a href="https://wa.me/380501234567" target="_blank">WhatsApp</a>
-          </div>
+      <div class="receipt">
+        <div class="receipt-header">
+          <span class="receipt-logo">Food&Vibe</span>
+          <span class="receipt-sub">*** ЧЕК ГОСТЯ ***</span>
         </div>
-        <div class="footer-col">
-          <h4>Контакти</h4>
-          <ul>
-            <li>Телефон: <a href="tel:+380501234567">+38 (050) 123-45-67</a></li>
-            <li>Email: <a href="mailto:hello@foodvibe.ua">hello@foodvibe.ua</a></li>
-            <li>Адреса: вул. Соборна, 15, Надвірна</li>
-          </ul>
+        <div class="receipt-divider" aria-hidden="true"></div>
+        <div class="receipt-row"><span>Адреса</span><span>вул. Соборна, 15, Надвірна</span></div>
+        <div class="receipt-row"><span>Телефон</span><span><a href="tel:+380501234567">+38 (050) 123-45-67</a></span></div>
+        <div class="receipt-row"><span>Email</span><span><a href="mailto:hello@foodvibe.ua">hello@foodvibe.ua</a></span></div>
+        <div class="receipt-divider" aria-hidden="true"></div>
+        <div class="receipt-row"><span>Пн – Пт</span><span>10:00 – 22:00</span></div>
+        <div class="receipt-row"><span>Сб – Нд</span><span>11:00 – 23:00</span></div>
+        <div class="receipt-row"><span>Доставка</span><span>до 22:30</span></div>
+        <div class="receipt-divider" aria-hidden="true"></div>
+        <div class="receipt-social">
+          <a href="https://instagram.com/foodvibe_ua" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://t.me/foodvibe_ua" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://wa.me/380501234567" target="_blank" rel="noopener">WhatsApp</a>
         </div>
-        <div class="footer-col">
-          <h4>Графік роботи</h4>
-          <ul>
-            <li>Пн - Пт: 10:00 - 22:00</li>
-            <li>Сб - Нд: 11:00 - 23:00</li>
-            <li>Доставка працює до 22:30</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        &copy; 2026 Food&Vibe Cafe. Всі права захищені.
+        <div class="receipt-divider" aria-hidden="true"></div>
+        <div class="receipt-total"><span>Дякуємо, що ви з нами!</span><span>♥</span></div>
+        <div class="receipt-barcode" aria-hidden="true"></div>
+        <div class="receipt-bottom">&copy; 2026 Food&Vibe Cafe · Всі права захищені</div>
       </div>
     </div>
   </footer>

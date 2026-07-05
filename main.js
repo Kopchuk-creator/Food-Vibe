@@ -49,37 +49,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Рендеринг карток страв ---
   function createCardHTML(item) {
-    const badgeHtml = item.available 
-      ? '' 
+    const badgeHtml = item.available
+      ? ''
       : '<span class="card-badge unavailable">Немає в наявності</span>';
-      
+
+    const freshHtml = item.category === 'salads'
+      ? '<span class="card-badge fresh">🌿 Свіже</span>'
+      : '';
+
     const btnHtml = item.available
       ? `<button class="btn btn-primary" onclick="addToCart('${item.id}')">У кошик</button>`
       : `<button class="btn btn-primary" disabled>У кошик</button>`;
 
     return `
       <div class="card" data-category="${item.category}">
+        <div class="card-head">
+          <h3 class="card-title">${item.name}</h3>
+          <p class="card-desc">${item.description} <span style="opacity:.7">— ${item.weight}</span></p>
+        </div>
         <div class="card-img-wrap">
           <img src="${item.image}" alt="${item.name}" width="600" height="400" loading="lazy"
                class="fade-img"
                onload="this.classList.add('loaded')">
+          ${freshHtml}
           ${badgeHtml}
         </div>
-        <div class="card-body">
-          <h3 class="card-title">${item.name}</h3>
-          <p class="card-desc">${item.description} <span style="opacity:.7">— ${item.weight}</span></p>
-          <div class="card-footer">
-            <span class="card-price">${item.price} грн</span>
-            ${btnHtml}
-          </div>
+        <div class="card-buy">
+          <span class="card-price">${item.price} грн</span>
+          ${btnHtml}
         </div>
       </div>
     `;
   }
 
+  // --- "Хіт дня" в hero: страва ротується за днем місяця ---
+  const heroSpecial = document.getElementById('hero-special');
+  let todaySpecialId = null;
+  if (heroSpecial && window.menuData) {
+    const specials = window.menuData.filter(i => i.available);
+    const today = specials[new Date().getDate() % specials.length];
+    if (today) {
+      todaySpecialId = today.id;
+      heroSpecial.innerHTML = `
+        <div class="hero-special-card">
+          <span class="hero-special-badge">🔥 Хіт дня</span>
+          <img src="${today.image}" alt="${today.name}" width="600" height="400" loading="eager">
+          <div class="hero-special-body">
+            <h3>${today.name}</h3>
+            <p>${today.description} <span style="opacity:.7">— ${today.weight}</span></p>
+            <div class="hero-special-footer">
+              <span class="card-price">${today.price} грн</span>
+              <button class="btn btn-primary" onclick="addToCart('${today.id}')">У кошик</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // --- Три фірмові страви на головній (хіт дня не дублюємо) ---
   const popularGrid = document.getElementById('popular-grid');
   if (popularGrid) {
-    const popularItems = window.menuData.filter(i => i.available).slice(0, 6);
+    const popularItems = window.menuData
+      .filter(i => i.available && i.id !== todaySpecialId)
+      .slice(0, 3);
     popularGrid.innerHTML = popularItems.map(createCardHTML).join('');
   }
 

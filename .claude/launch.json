@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cafe-static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "-p", "8123", "-c-1", "."],
+      "port": 8123
+    },
+    {
+      "name": "spa-static",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "npx", "-y", "http-server", "-p", "8124", "-c-1", "D:\\робота\\Сегмент 2\\приклад масажки"],
+      "port": 8124
+    }
+  ]
+}

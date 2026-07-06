@@ -20,9 +20,14 @@
   --olive: #4a5d3a;
 
   --cream: #f3e9d2;
-  --cream-muted: #a3937a;
+  --cream-muted: #b8a88d;
   --ink: #f3e9d2;
-  --ink-muted: #b3a184;
+  --ink-muted: #c2b197;
+
+  /* Папір чека у футері — завжди світлий, незалежно від теми */
+  --paper: #f5e6c8;
+  --paper-ink: #2b1d14;
+  --paper-ink-muted: #74604c;
 
   --radius: 4px;
   --radius-lg: 12px;
@@ -94,13 +99,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .btn-primary:hover { background-image: linear-gradient(180deg, #ffd97e 0%, #e69a3a 55%, #d5821f 100%); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(214, 155, 63, 0.35); }
 .btn-primary:active { transform: translateY(0); }
-.btn-primary:disabled { background-image: none; background-color: #4a4438; color: #8a8072; border-color: transparent; text-shadow: none; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-primary:disabled { background-image: none; background-color: #3f3627; color: #a5967c; border-color: transparent; text-shadow: none; cursor: not-allowed; transform: none; box-shadow: none; }
 
 .btn-outline { border: 1px solid var(--gold); color: var(--gold); }
 .btn-outline:hover { background-color: var(--gold); color: var(--dark-bg); transform: translateY(-2px); }
 
 .btn-outline.on-light { border-color: var(--ink); color: var(--ink); }
-.btn-outline.on-light:hover { background-color: var(--ink); color: var(--cream); border-color: var(--ink); }
+/* На ховері текст завжди контрастний до заливки (фон розділу, а не той самий тон) */
+.btn-outline.on-light:hover { background-color: var(--ink); color: var(--dark-bg); border-color: var(--ink); }
 
 /* ==========================================================================
    Header & Navigation
@@ -146,7 +152,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .header-actions { display: flex; align-items: center; gap: 0.5rem; }
 
-.theme-toggle { display: none; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  padding: 0.5rem;
+  color: var(--cream);
+  line-height: 1;
+}
+.theme-toggle:hover { color: var(--gold); transform: rotate(15deg); }
 
 .cart-toggle { position: relative; font-size: 1.35rem; padding: 0.5rem; color: var(--cream); }
 .cart-toggle:hover { color: var(--gold); }
@@ -987,7 +1002,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid var(--gold-soft); border-radius: var(--radius); color: var(--cream);
   font-family: inherit; font-size: 0.9rem; transition: border-color 0.3s;
 }
-.form-control::placeholder { color: #6b6155; }
+.form-control::placeholder { color: var(--cream-muted); opacity: 0.85; }
 .form-control:focus { outline: none; border-color: var(--gold); }
 .form-control option { background-color: var(--dark-bg-alt); }
 .form-control.input-invalid { border-color: #d9756a; }
@@ -1092,8 +1107,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   max-width: 440px;
   margin: 0 auto;
-  background-color: var(--light-bg);
-  color: var(--ink);
+  background-color: var(--paper);
+  color: var(--paper-ink);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   line-height: 1.6;
@@ -1110,8 +1125,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%;
   height: 8px;
   background:
-    linear-gradient(45deg, transparent 33.333%, var(--light-bg) 33.333%, var(--light-bg) 66.667%, transparent 66.667%),
-    linear-gradient(-45deg, transparent 33.333%, var(--light-bg) 33.333%, var(--light-bg) 66.667%, transparent 66.667%);
+    linear-gradient(45deg, transparent 33.333%, var(--paper) 33.333%, var(--paper) 66.667%, transparent 66.667%),
+    linear-gradient(-45deg, transparent 33.333%, var(--paper) 33.333%, var(--paper) 66.667%, transparent 66.667%);
   background-size: 12px 24px;
   background-position: 0 -12px;
 }
@@ -1127,12 +1142,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.1;
   color: var(--brick);
 }
-.receipt-sub { display: block; font-size: 0.68rem; letter-spacing: 3px; color: var(--ink-muted); margin-top: 0.25rem; }
+.receipt-sub { display: block; font-size: 0.68rem; letter-spacing: 3px; color: var(--paper-ink-muted); margin-top: 0.25rem; }
 
 .receipt-divider { border-top: 1px dashed rgba(43, 29, 20, 0.4); margin: 0.9rem 0; }
 
 .receipt-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.35rem; }
-.receipt-row > span:first-child { color: var(--ink-muted); flex-shrink: 0; }
+.receipt-row > span:first-child { color: var(--paper-ink-muted); flex-shrink: 0; }
 .receipt-row > span:last-child { text-align: right; }
 .receipt-row a { color: var(--brick); text-decoration: underline; }
 .receipt-row a:hover { color: var(--gold); }
@@ -1148,12 +1163,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 34px;
   margin: 1.1rem 0 0.6rem;
   background: repeating-linear-gradient(90deg,
-    var(--ink) 0 2px, transparent 2px 5px,
-    var(--ink) 5px 6px, transparent 6px 11px,
-    var(--ink) 11px 14px, transparent 14px 17px);
+    var(--paper-ink) 0 2px, transparent 2px 5px,
+    var(--paper-ink) 5px 6px, transparent 6px 11px,
+    var(--paper-ink) 11px 14px, transparent 14px 17px);
 }
 
-.receipt-bottom { text-align: center; font-size: 0.68rem; color: var(--ink-muted); }
+.receipt-bottom { text-align: center; font-size: 0.68rem; color: var(--paper-ink-muted); }
 
 .route-btn { width: 100%; border: 1px solid var(--gold-soft); color: var(--cream); border-radius: var(--radius); margin-top: 1.25rem; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; background-color: transparent; }
 .route-btn:hover { background-color: var(--gold); color: var(--dark-bg); border-color: var(--gold); }
@@ -1181,3 +1196,80 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   100% { transform: scale(1) translateY(0) rotate(0); }
 }
 .cart-bounce { animation: cartBounce 0.5s cubic-bezier(0.36,0.07,0.19,0.97) both; color: var(--gold); }
+
+/* ==========================================================================
+   LIGHT THEME — теплий кремовий день: темне золото на світлому фоні
+   (вмикається класом .light-theme на <html>, перемикач у хедері)
+   ========================================================================== */
+html.light-theme {
+  --dark-bg: #f7efdd;
+  --dark-bg-alt: #fdf8ec;
+  --dark-card: #fffaf0;
+  --light-bg: #efe2c6;
+  --light-card: #ffffff;
+
+  --gold: #96570f;
+  --gold-hover: #7d480c;
+  --gold-soft: rgba(168, 100, 28, 0.16);
+  --gold-line: rgba(168, 100, 28, 0.45);
+  --gradient-gold: linear-gradient(90deg, #c9862a 0%, #a8641c 55%, #8a4a10 100%);
+
+  --cream: #2c1f12;
+  --cream-muted: #6e5b44;
+  --ink: #2c1f12;
+  --ink-muted: #6e5b44;
+}
+
+html.light-theme .header { background-color: rgba(250, 243, 228, 0.92); }
+
+html.light-theme .card,
+html.light-theme .review-card,
+html.light-theme .hero-special-card {
+  background: linear-gradient(180deg, #fffaf0 0%, #f8eed7 55%, #f1e2c2 100%);
+}
+
+html.light-theme .card-price { color: #2c1f12; }
+
+html.light-theme .card:hover {
+  box-shadow: 0 25px 45px rgba(90, 60, 20, 0.18), 0 0 25px rgba(168, 100, 28, 0.1);
+}
+
+html.light-theme .hero-special-card {
+  box-shadow: 0 30px 60px rgba(90, 60, 20, 0.22), 0 0 30px rgba(168, 100, 28, 0.08);
+}
+
+/* Промо-банер у світлій темі — та сама схема, що на темній:
+   фото на всю ширину + градієнт зліва під текст, тільки фото світле */
+html.light-theme .promo-banner {
+  background: linear-gradient(120deg, rgba(255, 250, 240, 0.94) 30%, rgba(255, 250, 240, 0.4) 100%),
+              url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&h=700&q=80') center/cover no-repeat;
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 20px 45px rgba(90, 60, 20, 0.15);
+}
+html.light-theme .promo-banner::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(168, 100, 28, 0.3);
+  border-radius: calc(var(--radius-lg) - 4px);
+  pointer-events: none;
+}
+html.light-theme .promo-banner h2 { color: var(--cream); }
+html.light-theme .promo-banner p { color: #5d4c38; }
+html.light-theme .promo-banner .section-eyebrow { color: var(--gold); }
+
+/* Неактивна кнопка у світлій темі — світлий беж із коричневим текстом */
+html.light-theme .btn-primary:disabled { background-color: #e2d3b2; color: #7a6749; }
+
+/* Футер у світлій темі — теплий пісочний фон, чек стає білуватим папером */
+html.light-theme .footer { background-color: #e9dab8; }
+html.light-theme .receipt {
+  --paper: #fffdf6;
+  box-shadow: 0 20px 45px rgba(90, 60, 20, 0.28);
+}
+
+/* Карта в світлій темі — без нічної інверсії */
+html.light-theme .map-container iframe { filter: none; }
+
+/* Тіні мобільного меню/шухляди кошика — м'якші на світлому */
+html.light-theme .mobile-nav { box-shadow: 0 25px 55px rgba(90, 60, 20, 0.25); }

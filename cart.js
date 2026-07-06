@@ -19,6 +19,25 @@ window.storage = {
   }
 };
 
+// --- Тема (темна/світла): застосовуємо збережений вибір одразу ---
+if (window.storage.get('cafe_theme', 'dark') === 'light') {
+  document.documentElement.classList.add('light-theme');
+}
+
+function updateThemeToggleIcons() {
+  const isLight = document.documentElement.classList.contains('light-theme');
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.textContent = isLight ? '🌙' : '☀️';
+    btn.setAttribute('aria-label', isLight ? 'Увімкнути темну тему' : 'Увімкнути світлу тему');
+  });
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle('light-theme');
+  window.storage.set('cafe_theme', isLight ? 'light' : 'dark');
+  updateThemeToggleIcons();
+}
+
 let cart = window.storage.get('cafe_cart', []);
 
 function saveCart() {
@@ -206,7 +225,8 @@ function closeCart() {
 document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   renderCart();
-  
+  updateThemeToggleIcons();
+
   document.getElementById('close-cart-btn')?.addEventListener('click', closeCart);
   document.getElementById('cart-overlay')?.addEventListener('click', (e) => {
     if (e.target.id === 'cart-overlay') closeCart();

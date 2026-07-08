@@ -31,7 +31,7 @@ const menuData = [
     weight: '480 г',
     price: 260,
     image: 'https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=600&h=400&q=80',
-    available: false // Демонстрація відсутності
+    available: true
   },
   
   // ПАСТА
@@ -171,7 +171,7 @@ const menuData = [
     weight: '180 г',
     price: 155,
     image: 'https://images.unsplash.com/photo-1676300184760-aa72b43f13cb?auto=format&fit=crop&w=600&h=400&q=80',
-    available: false // Демонстрація відсутності
+    available: true
   }
 ];
 
